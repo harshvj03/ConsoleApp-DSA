@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ConsoleApp2
 {
@@ -249,7 +243,7 @@ namespace ConsoleApp2
         public static string LargestNumber(int[] nums)
         {
             Console.WriteLine("******Largest Number******");
-            
+
 
             string[] arr = new string[nums.Length];
 
@@ -261,7 +255,7 @@ namespace ConsoleApp2
             {
                 arr[i] = nums[i].ToString();
             }
-            Array.Sort(arr ,(x,y) => (y + x).CompareTo(x + y));
+            Array.Sort(arr, (x, y) => (y + x).CompareTo(x + y));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < arr.Length; i++)
             {
@@ -274,6 +268,108 @@ namespace ConsoleApp2
 
 
         }
+        public static IList<string> GenerateParenthesis(int n)
+        {
+            var arr = new List<string>();
 
+
+            int open = 3; int close = 3;
+
+            GenerateResult(arr, "", 0, 0, 3);
+
+            arr.ForEach(x => Console.WriteLine(x));
+
+
+            return arr;
+        }
+
+        public static IList<string> GenerateResult(List<string> res, string current, int open, int close, int n)
+        {
+            if(current.Length == n * 2)
+            {
+                res.Add(current);
+            }
+
+            if(open < n)
+            {
+                GenerateResult(res, current + "(", open + 1, close, n);
+            }
+
+            if(close < open)
+            {
+                GenerateResult(res, current + ")", open, close + 1, n);
+
+            }
+
+            return res;
+
+        }
+
+        public static int ScoreOfParentheses(string s)
+        {
+            Stack<int> stack = new Stack<int>();
+            stack.Push(0); // The initial score for the outermost level
+
+            foreach (char c in s)
+            {
+                if (c == '(')
+                {
+                    stack.Push(0); // Start a new score for a new level
+                }
+                else
+                {
+                    int innerScore = stack.Pop();
+                    int outerScore = stack.Pop();
+                    int scoreToAdd = Math.Max(2 * innerScore, 1);
+                    stack.Push(outerScore + scoreToAdd);
+                }
+            }
+            int ans = stack.Pop();
+            Console.WriteLine(ans);
+
+
+            return ans;
+
+        }
+
+        public static string ShortestPalindrome(string s)
+        {
+            char[] charArray = s.ToCharArray(); // Convert string to character array
+            Array.Reverse(charArray); // Reverse the array
+            string reverseString = new string(charArray);
+            int length = s.Length;
+            for(int i = 0; i < s.Length; i++)
+            {
+                if (s.Substring(0, length - i).Equals(reverseString.Substring(i)))
+                {
+                    return new StringBuilder(reverseString.Substring(0,i)).Append(s).ToString();
+                }
+            }
+
+            return "";
+        }
+
+        public static bool IsPalindrome(string s)
+        {
+            int left = 0, right = s.Length - 1;
+           
+            while (left <= right)
+            {
+                if (s[left] == s[right])
+                {
+                    
+                } else
+                {
+                    return false;
+                }
+
+                left ++;
+                right--;
+            }
+
+            return true;
+
+
+        }
     }
 }

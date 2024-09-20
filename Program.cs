@@ -13,3 +13,12 @@ Console.WriteLine($"{ans} - answer");
     
 int[] arr = new int[] {1, 10, 2 };
 StringDSA.LargestNumber(arr);
+
+StringDSA.GenerateParenthesis(3);
+Console.WriteLine("Score of Parenthesis");
+StringDSA.ScoreOfParentheses("(())");
+
+Console.WriteLine("shortest palindrome");
+var ans1 = StringDSA.ShortestPalindrome("abcd");
+
+Console.WriteLine(ans1);
