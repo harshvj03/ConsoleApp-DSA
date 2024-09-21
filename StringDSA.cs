@@ -371,5 +371,30 @@ namespace ConsoleApp2
 
 
         }
+
+        public static IList<int> LexicalOrder(int n)
+        {
+            List<int> res = new();
+            if (n == 0) return res;
+
+            for (int i = 1; i <= 9; i++)
+            {
+                DFS(i, n, res);
+            }
+
+
+            return res;
+        }
+
+        public static void DFS(int i, int n, IList<int> res)
+        {
+
+            if (i > n) return;
+            res.Add(i);
+            for (int j = 0; j <= 9; j++)
+            {
+                DFS(i * 10 + j, n, res);
+            }
+        }
     }
 }

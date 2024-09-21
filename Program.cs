@@ -19,6 +19,10 @@ Console.WriteLine("Score of Parenthesis");
 StringDSA.ScoreOfParentheses("(())");
 
 Console.WriteLine("shortest palindrome");
-var ans1 = StringDSA.ShortestPalindrome("abcd");
 
-Console.WriteLine(ans1);
+var ans1 = StringDSA.LexicalOrder(13);
+
+foreach (int i in ans1)
+{
+    Console.WriteLine(i);
+}
